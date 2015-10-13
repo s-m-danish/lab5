@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+
+
+#player{
+	position:relative;
+	width:150px;
+	height:100px;
+	border:1px solid red;
+	top:0px;
+	left:0px;
+	
+}
+
+#canvas{
+	width:100%;
+	height:100%;
+	border:1px solid black;
+
+}
+
+
+
+
+</style> 
+</head>
+
+
+
+<body>
+
+<div id="canvas">
+	<div id="player">
+		<img src="gyro.jpg" id="user" width="150" height="100" >
+	</div>
+</div>
+	
+
+
+
+<script>
+
+document.body.onkeydown=function(){
+
+	var player = document.getElementById("player"); 
+	var e = event.keyCode;
+	var vtop = (player.style.top)?parseInt(player.style.top):0;
+	var vleft = (player.style.left)?parseInt(player.style.left):0;
+	console.log("vtop: " + vtop + " vleft: " + vleft);
+		if (e == 40) { //down function
+		player.style.top =  vtop + 10 + "px";
+    } else if (e == 37) { //left function
+        player.style.left = vleft - 10 + "px";
+    } else if (e == 39) { //right function
+        player.style.left =vleft + 10 + "px";
+    } else if (e == 38) { //up function
+        player.style.top = vtop - 10 + "px";
+    }
+
+}
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+
+
+#content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.plane{border:1x solid black;position: relative;}
+
+.rectangle{
+  height: 250px;
+  width: 50px;
+  position: absolute;
+  background-color:orange;
+  
+  -webkit-animation: obstacle 10s linear infinite; 
+  
+}
+
+
+
+
+
+#rocket{
+  
+  
+  position:absolute;
+  -webkit-animation: rocket 5s linear infinite; 
+}
+
+.hawk{
+   float:left;
+  top: 250px;
+  left: 1200px;
+  position: relative;
+ -webkit-animation: hawks 5s linear infinite;
+}
+
+.cannon{
+   float:left;
+   top:500px;
+   left:1600px;
+   position: relative;
+  -webkit-animation: obstacle 10s linear infinite; 
+}
+
+.sphere {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 500%;
+  background-color=black;
+  position:relative;
+  top:500px;
+  left:1600px;
+  -webkit-animation: rocket 10s linear infinite; 
+  margin: 5%;
+}
+
+#myDIV{
+    width:1200px;
+    height:600px;
+    position: absolute;
+	border:5px solid red;
+    background-image: url('bg.jpg');
+	background-position: top left;
+    -webkit-animation: backgroundScroll 15s linear infinite;
+    animation: backgroundScroll 15s linear infinite;
+}
+
+
+@keyframes backgroundScroll {
+from {background-position: 0 0;}
+to {background-position: -1500px 0px;}
+}
+
+
+
+@-webkit-keyframes obstacle {
+    from { -webkit-transform: translateX(0px); }
+    to   { -webkit-transform:  translateX(-1500px);  }
+}
+
+@-webkit-keyframes rocket {
+    from { -webkit-transform: translateX(0px)translateY(0px); }
+    to   { -webkit-transform:  translateX(-1500px) translateY(-250px);  }
+}
+
+@-webkit-keyframes hawks {
+    from { -webkit-transform: translateX(0px) rotate(0deg)translateY(0px); }
+    to   { -webkit-transform:  translateX(-1500px)rotate(360deg) translateY(-250px);  }
+}
+
+
+</style>
+</head>
+<body>
+<div id="myDIV">
+
+<div id="content">
+	<img src="gyro.jpg" width="125" height="100">
+</div> 
+
+<div class="rectangle" style="top:350px;left:400px"></div>
+
+<div class="rectangle" style="top:350px;left:700px"></div>
+
+<div class="rectangle" style="top:0px;left:1000px"></div>
+
+<div class="rectangle" style="top:0px;left:1200px"></div>
+
+<div id="rocket" style="top:250px;left:500px;">
+	<img src="rocket.jpg" width="125" height="100">
+</div>
+
+
+
+
+
+
+ 
+
+<script>   
+
+
+
+setInterval(function(){
+
+	var character = document.getElementById("rocket");
+	var player = document.getElementById("content");
+	var obstacle = document.getElementById("rectangle");
+    
+    //Get the height and position of the player
+    var charTop    = parseInt(player.style.top),
+        charHeight = parseInt(player.style.height);
+    
+    //and the top of the ground
+    var rocketTop = parseInt(rocket.style.top);
+    var obstacleTop = parseInt(rocket.style.top);
+    //linear gravity? Why now?
+    
+    //If the character's bottom is hitting the ground,
+    //Stop moving
+    if(charTop == rocketTop) {
+        alert("gameover")  ;  
+    }
+	if(charTop == obstacleTop) {
+        alert("gameover")  ;  
+    }
+    
+    //Set the character's final position    
+   // character.style.top = charTop + "px";
+},5);
+
+document.body.onkeydown=function()
+{
+    
+	var player = document.getElementById("content"); 
+	var e = event.keyCode;
+	var vtop = (player.style.top)?parseInt(player.style.top):0;
+	var vleft = (player.style.left)?parseInt(player.style.left):0;
+	console.log("vtop: " + vtop + " vleft: " + vleft);
+		if (e == 40) { //down function
+		player.style.top =  vtop + 10 + "px";
+    } else if (e == 37) { //left function
+        player.style.left = vleft - 10 + "px";
+    } else if (e == 39) { //right function
+        player.style.left =vleft + 10 + "px";
+    } else if (e == 38) { //up function
+        player.style.top = vtop - 10 + "px";
+    }
+}  
+</script>
+
+
+
+
+
+</div>
+</body>
+</html>
+
+
+
